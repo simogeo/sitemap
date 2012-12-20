@@ -33,6 +33,9 @@ class sitemap {
 
 			// changing working path for exec() calls
 			chdir($this->config['working_path']);
+			
+			$this->checkPermissions($this->config['sitemap_path']);
+			$this->checkPermissions($this->config['working_path']);
 
 		}
 		catch(Exception $e){
@@ -46,6 +49,12 @@ class sitemap {
 		$r = unlink($this->config['sitemap_path'].$this->config['sitemap_name']);
 		if($r && !$quiet) $this->log("Deleting  current sitemap : ".$url.$sitemap_name .".");
 
+	}
+	
+	public function checkPermissions($folder) {
+	
+		if(!is_writable($folder)) die('Error: '.$folder.' is not writable. Please check permissions on given folder.');
+	
 	}
 
 	public function exists() {
@@ -168,7 +177,7 @@ class sitemap {
 			xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-			http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+			http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n';
 
 			foreach ($this->locations as $loc) {
 				$out .= "<url>\n\t<loc>".$loc."</loc>\n\t<priority>".$this->config['priority']."</priority>\n</url>\n";
