@@ -3,7 +3,7 @@
 include_once('class.sitemap.php');
 
 
-$sitemap = new sitemap('http://www.mywebsite.com', $sitemap_path);
+$sitemap = new sitemap('http://www.mywebsite.com', './');
 $sitemap->generate();
 
 echo '<h2>Displaying entries number<h2>';
