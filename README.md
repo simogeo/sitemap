@@ -1,9 +1,9 @@
 Simple PHP sitemap class
 ========================
 
-A sitemap relying on WGET and SED command tools. Simple & efficient. 
+A PHP sitemap class relying on WGET and SED command tools. Simple & efficient.
 
-How to simply use?
+How to use it?
 ========================
 
 ```php
@@ -19,6 +19,12 @@ Constructor options
 - *$working_path* (optional) : by default, use the current path. Could be overrided, for example '/tmp/'
 - *$sitemap_name* (optional) : by default, use 'sitemap.xml' value
 - *$priority* (optional) : by default take '0.500' value
+
+
+Caution
+========================
+
+Be sure to have permissions on working/writing folders !!!
 
 
 MIT LICENSE
