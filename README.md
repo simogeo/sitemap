@@ -15,7 +15,7 @@ $sitemap->generate();
 Constructor options
 ========================
 - *$url* : url to crawl
-- *$sitemap_path* : physical path to sitemap folder. For exemple '/var/www/website/'. You can get this value by looking at $_SERVER['SCRIPT_FILENAME'] value.
+- *$sitemap_path* : physical path to sitemap folder. For exemple '/var/www/website/'. You can get this value by looking at $_SERVER['SCRIPT_FILENAME'] value. It makes you able to generate a sitemap for your own website (in that case you will write the file at the root folder) but also for any website (in that case, you would probably store the file into the current folder './').
 - *$working_path* (optional) : by default, use the current path. Could be overrided, for example '/tmp/'
 - *$sitemap_name* (optional) : by default, use 'sitemap.xml' value
 - *$priority* (optional) : by default take '0.500' value
