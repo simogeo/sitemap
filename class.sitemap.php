@@ -53,7 +53,7 @@ class sitemap {
 	
 	public function checkPermissions($folder) {
 	
-		if(!is_writable($folder)) die('Error: '.$folder.' is not writable. Please check permissions on given folder.');
+		if(!is_writable($folder)) die('Error: '.$folder.' is not writable. Please check permissions on given folder');
 	
 	}
 
@@ -126,7 +126,7 @@ class sitemap {
 		$cmd   = "wget --spider --recursive --no-verbose -P sitemapCrawler --output-file=". $this->config['wgetlog_file'] ." ". $this->config['url'];
 		exec($cmd);
 
-		$this->log("Wget() - crawling website : ". $this->config['url'] .".");
+		$this->log("Wget() - Crawling website : ". $this->config['url'] .".");
 
 		$cmd  = 'sed -n "s@.\+ URL:\([^ ]\+\) .\+@\1@p" wgetlog.txt | sed "s@&@\&amp;@" > ' . $this->config['sedlog_file'];
 		exec($cmd);
@@ -173,11 +173,11 @@ class sitemap {
 		if($fp = fopen($this->config['sitemap_path'].$this->config['sitemap_name'], "w+")) {
 
 			$out = '<?xml version="1.0" encoding="UTF-8"?>
-			<urlset
-			xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-			http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n';
+	<urlset
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+	http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'."\n";
 
 			foreach ($this->locations as $loc) {
 				$out .= "<url>\n\t<loc>".$loc."</loc>\n\t<priority>".$this->config['priority']."</priority>\n</url>\n";
@@ -206,7 +206,7 @@ class sitemap {
 		$this->log("Deleting  file : ".$this->config['sedlog_file'].".");
 
 		$this->sureRemoveDir($this->config['working_path'].'sitemapCrawler', true);
-		$this->log("Deleting  wget() folder : ".$this->config['working_path'] .'sitemapCrawler'.".");
+		$this->log("Deleting  folder : ".$this->config['working_path'] .'sitemapCrawler'.".");
 
 	}
 
@@ -228,7 +228,7 @@ class sitemap {
 		if(!$dh = @opendir($dir)) return;
 		while (($obj = readdir($dh))) {
 			if($obj=='.' || $obj=='..') continue;
-			if (!@unlink($dir.'/'.$obj)) sureRemoveDir($dir.'/'.$obj, true);
+			if (!@unlink($dir.'/'.$obj)) $this->sureRemoveDir($dir.'/'.$obj, true);
 		}
 		if ($DeleteMe){
 			closedir($dh);
